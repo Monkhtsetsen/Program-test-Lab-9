@@ -73,3 +73,7 @@ Branch хамралт 100% байхад энэ алдаа үл үзэгдэгч 
 Засварын дараа `results/mvn-verify-final.txt` дээр `Tests run: 32`, `BUILD SUCCESS`. `results/jacoco-final.csv` дээр `BRANCH_MISSED = 0`, `LINE_MISSED = 0`.
 
 Хэсэг D-ийн зааг утгын тест болон дүгнэлтийг AI туслахтай хамтран бэлдсэн. `results/mvn-test-D-fail.txt` нь засвараас өмнөх, `results/mvn-verify-final.txt` нь засварын дараах ажиллалт.
+
+## Нэмэлт даалгавар. Coverage gate
+
+`pom.xml` дээр `jacoco:check` дүрэм нэмсэн. `mvn verify` үед bundle-ийн branch хамралт 90%-иас доош бол build унана. Одоогийн хамралт 41/41 тул шалгалт дамжина. `.github/workflows/ci.yml` энэ `mvn verify` командыг `main` руу хийсэн push болон pull request дээр GitHub Actions-ээр ажиллуулна. Branch хамралт 90%-иас доош бол CI бас унана.
