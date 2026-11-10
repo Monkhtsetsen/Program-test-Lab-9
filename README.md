@@ -50,3 +50,16 @@ OS name: "linux", version: "6.18.54.1-microsoft-standard-wsl2", arch: "amd64", f
 JaCoCo `||` ба `&&`-ийн нөхцөл бүрийг тусдаа салаа гэж тоолдог. Тиймээс `scholarship`-ийн эхний `if`-ийн гурван үнэн утгад гурван тусдаа тест бичсэн: `scholarship_gpaNegative_throws`, `scholarship_gpaAbove4_throws`, `scholarship_creditsNegative_throws`. `gpa()`-ийн `switch` default салааг F дүнгээр (`gpa_score50_returns0`), голч хангасан ч кредит дутуу салааг `scholarship_gpa3_9_credits14_returns70` болон `scholarship_gpa3_5_credits11_returns50` тестаар хаасан.
 
 Хэсэг B-ийн нэмэлт тест болон `cfg.png`-г AI туслахтай хамтран бэлдсэн. `results/mvn-verify-B.txt` болон `results/jacoco-B.csv` нь тэр тестийн `mvn verify` гаралт.
+
+## Хэсэг C. Давталтын заагийн тестүүд
+
+`gpa()`-ийн давталтад 0 / 1 / 2+ дүрмийг дараах тестаар шалгасан.
+
+| Зааг | Тест | Оролт | Хүлээгдэх үр дүн |
+| --- | --- | --- | --- |
+| 0 удаа | `gpa_empty_throws` | `[]` | `IllegalArgumentException` |
+| 0 удаа | `gpa_null_throws` | `null` | `IllegalArgumentException` |
+| 1 удаа | `gpa_score95_returns4` | `[95]` | `4.0` |
+| 2+ удаа | `gpa_scores95_85_75_65_returns2_5` | `[95, 85, 75, 65]` | `2.5` |
+
+Эдгээр тест branch болон line хамралтыг өсгөхгүй: давталтын бие болон гарах салаа Хэсэг B-д аль хэдийн нэг удаа хамрагдсан, JaCoCo давталт хэдэн удаа эргэснийг тоолдоггүй. Гэсэн ч 0 удаа хоосон оролтын exception-ыг, 1 удаа нэг дүн дээрх хуваалтыг, 2+ удаа дүн бүрийг нийлбэрт нэмж байгаа эсэхийг шалгана — `total =` гэж хуримтлуулахгүй алдаа ижил салааг хамруулсан ч зөвхөн олон дүнгийн тестэд унана.

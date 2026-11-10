@@ -91,6 +91,16 @@ class ScholarshipCalculatorTest {
     }
 
     @Test
+    void gpa_score95_returns4() {
+        assertEquals(4.0, calculator.gpa(new double[] {95}), 0.001);
+    }
+
+    @Test
+    void gpa_scores95_85_75_65_returns2_5() {
+        assertEquals(2.5, calculator.gpa(new double[] {95, 85, 75, 65}), 0.001);
+    }
+
+    @Test
     void scholarship_gpaNegative_throws() {
         assertThrows(IllegalArgumentException.class, () -> calculator.scholarship(-0.1, 15, false));
     }
